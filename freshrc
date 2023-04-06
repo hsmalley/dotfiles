@@ -57,6 +57,9 @@ fresh config/screenrc --file=~/.screenrc
 fresh config/ranger/rc.conf --file=~/.config/ranger/rc.conf
 fresh config/ncdu --file=~/.config/ncdu/config
 
+# SSH
+fresh config/ssh_config --file=~/.ssh/config
+
 # RadSSH
 fresh config/radssh_config --file=~/.radssh_config
 

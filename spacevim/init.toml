@@ -115,3 +115,7 @@
 [[custom_plugins]]
   repo = "BourgeoisBear/clrzr"
   merged = false
+
+[[custom_plugins]]
+  repo = "ryanoasis/vim-devicons"
+  merged = false
