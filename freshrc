@@ -75,6 +75,16 @@ fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
 # Placing empy netrc
 fresh config/netrc --file=~/.netrc
 
+# Some Scripts
+fresh bin/tmux-to.sh --file=~/.local/bin/tmux-to
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  fresh bin/airdrop --file=~/.local/bin/airdrop
+  fresh bin/backup_mac.sh --file=~/.local/bin/backup.sh
+  fresh bin/tar_home_mac.sh --file=~/.local/bin/tar_home.sh
+  fresh bin/umbrellactl --file=~/.local/bin/umbrellactl
+fi
+
 # IT'S FONT TIME BABY!!!
 if [[ "$(uname)" == "Linux" ]]; then
 	fresh fonts/MesloLGS\ NF\ Regular.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Regular.ttf
