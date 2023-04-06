@@ -1,0 +1,11 @@
+# PYTHON
+alias pip="/usr/local/bin/python3 -m pip"
+alias pip3="pip"
+alias python="/usr/local/bin/python3"
+alias python3="/usr/local/bin/python3"
+
+alias radssh="python3 -m radssh.shell"
+alias ls="lsd"
+alias less="bat"
+
+alias kubectl="minikube kubectl --"

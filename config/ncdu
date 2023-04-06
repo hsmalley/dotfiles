@@ -1,0 +1,8 @@
+# Always enable extended mode
+-e
+# Disable file deletion
+#--disable-delete
+# Exclude .git directories
+--exclude .git
+# Exclude .svn directories
+--exclude .svn

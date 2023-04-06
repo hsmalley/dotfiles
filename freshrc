@@ -1,0 +1,101 @@
+# vim: set ft=sh:
+
+fresh freshshell/fresh bin/fresh --bin
+fresh freshshell/fresh contrib/completion/fresh-completion.zsh --file=completion/_fresh
+fresh freshshell/fresh-open bin/fresh-open --bin
+
+# Functions
+init_spacevim() {
+	curl -sLf https://spacevim.org/install.sh | bash
+}
+
+init_starship() {
+	curl -sS https://starship.rs/install.sh | sh
+}
+
+init_nerdfonts() {
+	mkdir -p ~/.local
+	git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts ~/.local/nerd-fonts
+	cd ~/.local/nerd-fonts || exit
+	git sparse-checkout add patched-fonts/JetBrainsMono
+	git sparse-checkout add patched-fonts/IBMPlexMono
+	git sparse-checkout add patched-fonts/SourceCodePro
+	git sparse-checkout add patched-fonts/FiraCode
+	git sparse-checkout add patched-fonts/FiraMono
+
+}
+
+# ZSH
+fresh-options --file=~/.zshrc --ignore-missing
+  fresh config/zshrc
+    fresh config/zshrc.$(hostname -s)
+  fresh-options
+
+fresh-options --file=~/.zshrc.alias --ignore-missing
+  fresh config/zshrc.alias
+    fresh config/zshrc.alias.$(hostname -s)
+  fresh-options
+
+fresh-options --file=~/.zshrc.local --ignore-missing
+  fresh config/zshrc.local
+    fresh config/zshrc.local.$(hostname -s)
+  fresh-options
+
+fresh-options --file=~/.gitconfig --ignore-missing
+  fresh config/gitconfig.$(hostname -s)
+    fresh config/gitconfig
+  fresh-options
+
+# Basics
+fresh config/toprc --file=~/.toprc
+fresh config/wgetrc --file=~/.wgetrc
+fresh config/inputrc --file=~/.inputrc
+fresh config/sqliterc --file=~/.sqliterc
+fresh config/screenrc --file=~/.screenrc
+
+# dot configs
+fresh config/ranger/rc.conf --file=~/.config/ranger/rc.conf
+fresh config/ncdu --file=~/.config/ncdu/config
+
+# RadSSH
+fresh config/radssh_config --file=~/.radssh_config
+
+# Topgrade
+if [[ "$(uname)" == "Linux" ]]; then
+  fresh config/topgrade.toml --file=~/.config/topgrade.toml
+fi
+
+if [[ "$(uname)" == "Darwin" ]]; then
+	fresh config/topgrade.toml.$(hostname -s) --file=~/.config/topgrade.conf --ignore-missing
+fi
+
+# TMUX
+fresh config/tmux.conf.local --file=~/.tmux.conf.local
+
+# SpaceVIM
+fresh spacevim/init.toml --file=~/.SpaceVim.d/init.toml
+fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
+
+# Placing empy netrc
+fresh config/netrc --file=~/.netrc
+
+# IT'S FONT TIME BABY!!!
+if [[ "$(uname)" == "Linux" ]]; then
+	fresh fonts/MesloLGS\ NF\ Regular.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Regular.ttf
+	fresh fonts/MesloLGS\ NF\ Italic.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Italic.ttf
+	fresh fonts/MesloLGS\ NF\ Bold.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Bold.ttf
+	fresh fonts/MesloLGS\ NF\ Bold\ Italic.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Bold\ Italic.ttf
+fi
+
+if [[ "$(uname)" == "Darwin" ]]; then
+	fresh fonts/MesloLGS\ NF\ Regular.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Regular.ttf
+	fresh fonts/MesloLGS\ NF\ Italic.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Italic.ttf
+	fresh fonts/MesloLGS\ NF\ Bold.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Bold.ttf
+	fresh fonts/MesloLGS\ NF\ Bold\ Italic.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Bold\ Italic.ttf
+	fresh config/topgrade.toml.$(hostname -s) --file=~/.config/topgrade.conf --ignore-missing
+fi
+
+fresh_after_build() {
+  init_spacevim
+  #init_nerdfonts
+}

@@ -1,0 +1,186 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source ~/.fresh/build/shell.sh
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+### End of Zinit's installer chunk
+
+# OH MY ZSH PLUGINS
+zinit wait lucid for \
+  OMZP::svn-fast-info \
+  OMZP::mosh \
+  OMZP::iterm2 \
+  OMZP::bgnotify \
+  OMZP::brew \
+  OMZP::macports \
+  OMZP::vscode \
+  OMZP::fabric \
+  OMZP::invoke \
+  OMZP::jira \
+
+zinit wait lucid for \
+        OMZL::git.zsh \
+  atload"unalias grv" \
+        OMZP::git \
+        OMZP::git-extras
+
+zinit wait'!' lucid for \
+    OMZL::prompt_info_functions.zsh \
+
+zinit wait lucid for \
+  atinit"zicompinit; zicdreplay"  \
+        zdharma-continuum/fast-syntax-highlighting \
+      OMZP::colored-man-pages \
+  as"completion" \
+        OMZP::docker/_docker
+
+# https://github.com/trapd00r/LS_COLORS
+zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zinit light trapd00r/LS_COLORS
+
+# https://github.com/zsh-users/zsh-autosuggestions
+zinit ice atload \
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+zinit light zsh-users/zsh-autosuggestions
+
+zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-completions
+
+# https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+zinit ice atload \
+  zstyle ':prezto:module:tmux:iterm' integrate 'yes' \
+  zstyle ':prezto:module:tmux:auto-start' remote 'yes'
+zinit snippet PZTM::tmux
+
+# https://github.com/tj/git-extras
+zi ice as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX"
+zi light tj/git-extras
+
+# https://github.com/direnv/direnv
+zinit from"gh-r" as"program" mv"direnv* -> direnv" \
+    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+    pick"direnv" src="zhook.zsh" for \
+        direnv/direnv
+
+# https://github.com/molovo/revolver
+zinit ice wait"2" lucid as"program" pick"revolver"
+zinit light molovo/revolver
+
+# https://github.com/k4rthik/git-cal
+zinit ice as"program" atclone'perl Makefile.PL PREFIX=$ZPFX' \
+    atpull'%atclone' make'install' pick"$ZPFX/bin/git-cal"
+zinit light k4rthik/git-cal
+
+# https://github.com/paoloantinori/hhighlighter
+zinit ice pick"h.sh"
+zinit light paoloantinori/hhighlighter
+
+# https://github.com/wfxr/forgit
+zinit ice wait'0' lucid
+zinit load 'wfxr/forgit'
+
+# https://github.com/hlissner/zsh-autopair
+zinit ice wait'0' lucid
+zinit load hlissner/zsh-autopair
+
+# This can get annoying but it is helpful at times
+# https://github.com/zdharma-continuum/zsh-startify
+#zinit ice wait'0' lucid atload'zsh-startify'
+#zinit load zdharma-continuum/zsh-startify
+
+# https://github.com/z-shell/zsh-navigation-tools
+zinit ice wait"1" lucid
+zinit load z-shell/zsh-navigation-tools
+
+# Some tools that are very handy
+zinit wait"2" lucid from"gh-r" as"null" for \
+     sbin"fzf"          junegunn/fzf-bin \
+     sbin"**/fd"        @sharkdp/fd \
+     sbin"**/bat"       @sharkdp/bat \
+     sbin"**/hyperfine" @sharkdp/hyperfine \
+     sbin"exa* -> exa"  ogham/exa \
+     sbin"lsd"          lsd-rs/lsd
+
+#zinit pack for \
+#  fzf \
+#  ls_colors 
+#  doctoc
+
+function pipupgrade() {
+pip --disable-pip-version-check list --outdated --format=json | python -c "import json, sys; print('\n'.join([x['name'] for x in json.load(sys.stdin)]))" | xargs pip install --upgrade
+}
+
+# ARA
+#export ANSIBLE_CALLBACK_PLUGINS="$(python3 -m ara.setup.callback_plugins)"
+
+#GPG Configs
+export KEYID=0xBABC5FAE7E3C39AE
+
+sign () {
+  gpg --sign "${1}"
+}
+
+verify () {
+  gpg --verify "${1}"
+}
+
+encrypt () {
+        output=~/"${1}".$(date +%s).enc
+        gpg --encrypt --armor --output ${output} -r "${KEYID}" "${1}" && echo "${1} -> ${output}"
+}
+
+decrypt () {
+        output=$(echo "${1}" | rev | cut -c16- | rev)
+        gpg --decrypt --output ${output} "${1}" && echo "${1} -> ${output}"
+}
+
+ssh_sign () {
+  ssh-keygen -Y sign -f ~/.ssh/id_ed25519 -n file "${1}"
+}
+
+ssh_verify () {
+  ssh-keygen -Y verify -f allowed_signers -I hsmalley@gmail.com -n file -s "${1}.sig" <"${1}"
+}
+
+ssh_sign_yubikey () {
+  ssh-keygen -Y sign -f ~/.ssh/id_yubikey5 -n file "${1}"
+}
+
+source $HOME/.zshrc.local
+source $HOME/.zshrc.alias
+source $HOME/.zshrc.internal
+
+# Load powerlevel10k theme
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
