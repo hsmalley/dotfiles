@@ -48,7 +48,8 @@ ZSH w/ zinit!
 - a smattering of rust tools
 
 Tmux w/ ohmytmux & powerline
-Vim w/ spacevim & powerline
+
+Vim w/ spacevim
 
 Not Included:
 

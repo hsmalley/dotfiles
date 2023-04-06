@@ -5,7 +5,7 @@ assume_yes = true
 #disable = ["system", "emacs"]
 
 # Ignore failures for these steps
-#ignore_failures = ["powershell"]
+ignore_failures = ["powershell", "ruby_gems", "git_repos", "tmux", "vim"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
@@ -14,7 +14,7 @@ assume_yes = true
 no_retry = true
 
 # Run inside tmux
-run_in_tmux = true
+#run_in_tmux = true
 
 # List of remote machines with Topgrade installed on them
 #remote_topgrades = ["toothless", "pi", "parnas"]
@@ -32,7 +32,7 @@ run_in_tmux = true
 #set_title = false
 
 # Display the time in step titles
-# display_time = true
+display_time = true
 
 # Cleanup temporary or old files
 cleanup = true
@@ -70,24 +70,24 @@ autoremove = true
 
 [linux]
 # Arch Package Manager to use. Allowed values: autodetect, trizen, aura, paru, yay, pikaur, pacman, pamac.
-#arch_package_manager = "pacman"
+arch_package_manager = "pacman"
 # Arguments to pass yay (or paru) when updating packages
-#yay_arguments = "--nodevel"
-#aura_aur_arguments = "-kx"
-#aura_pacman_arguments = ""
-#show_arch_news = true
-#trizen_arguments = "--devel"
-#pikaur_arguments = ""
-#pamac_arguments = "--no-devel"
-#enable_tlmgr = true
-#emerge_sync_flags = "-q"
-#emerge_update_flags = "-uDNa --with-bdeps=y world"
-#redhat_distro_sync = false
-#rpm_ostree = false
+yay_arguments = "--nodevel"
+aura_aur_arguments = "-kx"
+aura_pacman_arguments = ""
+show_arch_news = true
+trizen_arguments = "--devel"
+pikaur_arguments = ""
+pamac_arguments = "--no-devel"
+enable_tlmgr = true
+emerge_sync_flags = "-q"
+emerge_update_flags = "-uDNa --with-bdeps=y world"
+redhat_distro_sync = true
+rpm_ostree = false
 
 [windows]
 # Manually select Windows updates
-#accept_all_updates = false
+accept_all_updates = false
 #open_remotes_in_new_terminal = true
 
 # Causes Topgrade to rename itself during the run to allow package managers
@@ -101,7 +101,7 @@ autoremove = true
 
 [firmware]
 # Offer to update firmware; if false just check for and display available updates
-#upgrade = true
+upgrade = true
 
 [flatpak]
 # Use sudo for updating the system-wide installation

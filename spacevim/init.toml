@@ -95,9 +95,6 @@
   name = "ssh"
 
 [[layers]]
-  name = "shell"
-
-[[layers]]
   name = "sudo"
 
 [[layers]]

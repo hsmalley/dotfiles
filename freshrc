@@ -22,7 +22,6 @@ init_nerdfonts() {
 	git sparse-checkout add patched-fonts/SourceCodePro
 	git sparse-checkout add patched-fonts/FiraCode
 	git sparse-checkout add patched-fonts/FiraMono
-
 }
 
 # ZSH
@@ -48,13 +47,16 @@ fresh-options --file=~/.gitconfig --ignore-missing
 
 # Basics
 fresh config/toprc --file=~/.toprc
+fresh config/bashrc --file=~/.bashrc
 fresh config/wgetrc --file=~/.wgetrc
 fresh config/inputrc --file=~/.inputrc
 fresh config/sqliterc --file=~/.sqliterc
 fresh config/screenrc --file=~/.screenrc
+fresh config/clang-format --file=~/.clang-format
 
 # dot configs
 fresh config/ranger/rc.conf --file=~/.config/ranger/rc.conf
+fresh config/topgrade.toml --file=~/.config/topgrade.toml
 fresh config/ncdu --file=~/.config/ncdu/config
 
 # SSH
@@ -62,15 +64,6 @@ fresh config/ssh_config --file=~/.ssh/config
 
 # RadSSH
 fresh config/radssh_config --file=~/.radssh_config
-
-# Topgrade
-if [[ "$(uname)" == "Linux" ]]; then
-  fresh config/topgrade.toml --file=~/.config/topgrade.toml
-fi
-
-if [[ "$(uname)" == "Darwin" ]]; then
-	fresh config/topgrade.toml.$(hostname -s) --file=~/.config/topgrade.conf --ignore-missing
-fi
 
 # TMUX
 fresh config/tmux.conf.local --file=~/.tmux.conf.local
@@ -98,7 +91,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	fresh config/topgrade.toml.$(hostname -s) --file=~/.config/topgrade.conf --ignore-missing
 fi
 
-fresh_after_build() {
-  init_spacevim
-  #init_nerdfonts
-}
+#fresh_after_build() {
+#  init_spacevim
+#  init_nerdfonts
+#}
