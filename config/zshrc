@@ -172,6 +172,11 @@ ssh_sign_yubikey () {
   ssh-keygen -Y sign -f ~/.ssh/id_yubikey5 -n file "${1}"
 }
 
+# When you just need the answer to everything a little more random
+random_42 () {
+  head -c 42 /dev/urandom | base64
+}
+
 source $HOME/.zshrc.local
 source $HOME/.zshrc.alias
 source $HOME/.zshrc.internal
