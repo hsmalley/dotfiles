@@ -101,6 +101,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	fresh config/topgrade.toml.$(hostname -s) --file=~/.config/topgrade.conf --ignore-missing
 fi
 
+fresh config/dontpanic --file=~/.dontpanic
+
 #fresh_after_build() {
 #  init_spacevim
 #  init_nerdfonts
