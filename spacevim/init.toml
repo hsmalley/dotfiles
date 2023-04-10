@@ -58,7 +58,6 @@
 [[layers]]
   name = 'edit'
   autosave_timeout = 300000
-  autosave_events = ['InsertLeave', 'TextChanged']
   autosave_all_buffers = true
 
 [[layers]]
