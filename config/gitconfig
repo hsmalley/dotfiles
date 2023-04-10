@@ -1,16 +1,16 @@
 [commit]
   gpgsign = true
 [credential]
-	helper = cache --timeout=900
+  helper = cache --timeout=900
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [svn]
-	rmdir = true
+  rmdir = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [diff]
   external = difft
 [difftool]
@@ -22,11 +22,11 @@
 [alias]
   dft = difftool
 [gpg]
-	format = ssh
+  format = ssh
 [submodule]
-	recurse = true
-	fetchJobs = 0
+  recurse = true
+  fetchJobs = 0
 [rebase]
-	autoStash = true
+  autoStash = true
 [format]
   signOff = yes
