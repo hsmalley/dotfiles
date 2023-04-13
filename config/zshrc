@@ -128,7 +128,7 @@ zinit wait"2" lucid from"gh-r" as"null" for \
      sbin"lsd"          lsd-rs/lsd \
      sbin"difft"        Wilfred/difftastic \
      sbin"tokei"        XAMPPRocky/tokei \
-     sbin"bottom"       ClementTsang/bottom \
+     sbin"btm"       ClementTsang/bottom \
 
 #zinit pack for \
 #  fzf \
