@@ -72,6 +72,12 @@ tasks:
       - starship preset nerd-font-symbols -o ~/.config/starship.toml
     status:
       - test -f $(which starship)
+  oh-my-tmux:
+    desc: Installs Oh My Tmux
+    dir: ~
+    cmds:
+      - git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+      - ln -s ~/.tmux/.tmux.conf ~/.tmux.conf
   rust_tools:
     desc: Install some rust tools
     cmds:
