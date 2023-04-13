@@ -1,6 +1,6 @@
 ---
 # .SYNOPSIS
-# Uses go-task to setup a system 
+# Uses go-task to setup a system
 # .INSTALL
 # dnf install go-task
 # brew install go-task
@@ -14,17 +14,91 @@ version: "3"
 vars:
 tasks:
   default:
-    desc: Bootstrap system
+    desc: Choose Wisely?
+    deps: [fedora]
+  fedora:
+    desc: Bootstrap Fedora system
+    env:
+      FRESH_LOCAL_SOURCE: hsmalley/dotfiles
     cmds:
       - sudo dnf makecache -y
-      - sudo dnf install -y go-task vim zsh python-pip python-pip-wheel podman podman-tui
-      - sudo dnf install -y cockpit cockpit-selinux restic 
-      - sudo dnf install -y mkfontscale cpan global restic 
       - sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+      - sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
       - sudo dnf groupupdate core -y
+      - sudo dnf install -y go-task vim zsh restic python-pip python-pip-wheel podman podman-tui
+      - sudo dnf install -y cockpit cockpit-selinux 
+      - sudo dnf install -y mkfontscale cpan global cargo
       - pip install --user -U pip wheel
-  update_system:
+      - FRESH_LOCAL_SOURCE=hsmalley/dotfiles bash <(curl -sL https://get.freshshell.com)
+  fedora_update:
     desc: Update System & Reboot
     cmds:
       - sudo dnf offline-distrosync download -y
       - sudo dnf offline-distrosync reboot -y
+  fonts:
+    desc: Just some nerd fonts
+  spacevim:
+    desc: Install SpaceVIM
+    cmds: curl -sLf https://spacevim.org/install.sh | bash
+  starship:
+    desc: Install Starship.rs
+    cmds: curl -sS https://starship.rs/install.sh | sh
+  fonts:
+    desc: Grab some nerd fonts
+    cmds:
+      - mkdir -p ~/.local
+      - git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts ~/.local/nerd-fonts
+      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/JetBrainsMono
+      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/IBMPlexMono
+      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/SourceCodePro
+      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/FiraCode
+  macos:
+    desc: Sets what I like on MacOS (Reboot Required)
+    cmds:
+      - defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+      - defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+      - defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+      - defaults write com.apple.screencapture location -string "${HOME}/Downloads"
+      - defaults write com.apple.screencapture type -string "png"
+      - defaults write com.apple.finder NewWindowTarget -string "PfDe"
+      - defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+      - defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+      - defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+      - defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+      - defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+      - defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+      - defaults write com.apple.finder ShowStatusBar -bool true
+      - defaults write com.apple.finder QLEnableTextSelection -bool true
+      - defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+      - defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+      - defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+      - defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+      - defaults write NSGlobalDomain com.apple.springing.delay -float 0.1
+      - defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+      - /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+      - /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+      - /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+      - /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+      - /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+      - /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 64" ~/Library/Preferences/com.apple.finder.plist
+      - defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+      - chflags nohidden ~/Library
+      - defaults write com.apple.dock tilesize -int 60
+      - defaults write com.apple.dock expose-animation-duration -float 0.15
+      - defaults write com.apple.dock showhidden -bool true
+      - defaults write com.apple.universalaccess reduceTransparency -bool true
+      - defaults write com.apple.dock wvous-br-corner -int 0
+      - defaults write com.apple.dock wvous-br-modifier -int 0
+      - defaults write com.apple.dock wvous-tr-corner -int 13
+      - defaults write com.apple.dock wvous-tr-modifier -int 0
+      - defaults write com.apple.dock wvous-br-corner -int 14
+      - defaults write com.apple.dock wvous-br-modifier -int 0
+      - defaults write com.apple.dock wvous-bl-corner -int 4
+      - defaults write com.apple.dock wvous-bl-modifier -int 0
+      - defaults write com.apple.Safari IncludeDevelopMenu -bool true
+      - defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+      - defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+      - defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+      - defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+      - defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+      - defaults write com.apple.ActivityMonitor ShowCategory -int 0

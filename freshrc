@@ -21,7 +21,6 @@ init_nerdfonts() {
 	git sparse-checkout add patched-fonts/IBMPlexMono
 	git sparse-checkout add patched-fonts/SourceCodePro
 	git sparse-checkout add patched-fonts/FiraCode
-	git sparse-checkout add patched-fonts/FiraMono
 }
 
 # ZSH
