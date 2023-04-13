@@ -26,7 +26,7 @@ tasks:
       - sudo dnf makecache -y
       - sudo dnf install -y go-task restic python-pip python-pip-wheel 
       - sudo dnf install -y cockpit cockpit-selinux podman podman-tui sqlite 
-      - sudo dnf install -y mkfontscale cpan global cargo util-linux-user pcp-system-tools
+      - sudo dnf install -y mkfontscale cpan global cargo util-linux-user pcp-system-tools openssl-devel
       - sudo dnf install -y vim zsh tmux powerline tmux-powerline vim-powerline
       - pip install --user -U pip wheel
   fedora_update:
@@ -82,6 +82,7 @@ tasks:
   rust_tools:
     desc: Install some rust tools
     cmds:
+      - cargo install cargo-update cargo-cache
       - cargo install topgrade bat bottom broot tokei difftastic
   grml:
     desc: Installs GRML ZSH - https://grml.org/zsh/
