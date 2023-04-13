@@ -126,7 +126,9 @@ zinit wait"2" lucid from"gh-r" as"null" for \
      sbin"**/hyperfine" @sharkdp/hyperfine \
      sbin"exa* -> exa"  ogham/exa \
      sbin"lsd"          lsd-rs/lsd \
-     sbin"difft"        Wilfred/difftastic
+     sbin"difft"        Wilfred/difftastic \
+     sbin"tokei"        XAMPPRocky/tokei \
+     sbin"bottom"       ClementTsang/bottom \
 
 #zinit pack for \
 #  fzf \
