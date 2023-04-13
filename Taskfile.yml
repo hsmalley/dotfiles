@@ -15,7 +15,7 @@ vars:
 tasks:
   default:
     desc: Choose Wisely?
-    deps: [fedora]
+    deps: []
   fedora:
     desc: Bootstrap Fedora system
     env:
@@ -36,22 +36,22 @@ tasks:
       - sudo dnf offline-distrosync download -y
       - sudo dnf offline-distrosync reboot -y
   fonts:
-    desc: Just some nerd fonts
+    desc: Grab my fonts
+    cmds:
+      - mkdir -p ~/.local/share/fonts; git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git ~/.local/share/fonts/nerd-fonts
+      - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/JetBrainsMono
+      - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/IBMPlexMono
+      - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/SourceCodePro
+      - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/FiraCode
+      - fc-cache
   spacevim:
     desc: Install SpaceVIM
-    cmds: curl -sLf https://spacevim.org/install.sh | bash
+    cmds: 
+      - curl -sLf https://spacevim.org/install.sh | bash
   starship:
     desc: Install Starship.rs
-    cmds: curl -sS https://starship.rs/install.sh | sh
-  fonts:
-    desc: Grab some nerd fonts
-    cmds:
-      - mkdir -p ~/.local
-      - git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts ~/.local/nerd-fonts
-      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/JetBrainsMono
-      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/IBMPlexMono
-      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/SourceCodePro
-      - git sparse-checkout add ~/.local/nerd-fonts/patched-fonts/FiraCode
+    cmds: 
+      - curl -sS https://starship.rs/install.sh | sh
   macos:
     desc: Sets what I like on MacOS (Reboot Required)
     cmds:
