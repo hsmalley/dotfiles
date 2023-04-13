@@ -19,9 +19,10 @@ tasks:
       - sudo dnf makecache -y
       - sudo dnf install -y go-task vim zsh python-pip python-pip-wheel podman podman-tui
       - sudo dnf install -y cockpit cockpit-selinux restic 
-      - sudo dnf install -y mkfontscale cpan restic 
+      - sudo dnf install -y mkfontscale cpan global restic 
       - sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
       - sudo dnf groupupdate core -y
+      - pip install --user -U pip wheel
   update_system:
     desc: Update System & Reboot
     cmds:
