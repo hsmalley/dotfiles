@@ -1,0 +1,6 @@
+export TERM="xterm-256color"
+export EDITOR=vim
+export SVN_EDITOR=vim
+export GIT_EDITOR=vim
+export LANG=en_US.UTF-8
+export ARCHFLAGS="-arch x86_64"
