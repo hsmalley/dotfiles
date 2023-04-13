@@ -16,27 +16,42 @@ tasks:
   default:
     desc: Choose Wisely?
     deps: []
+  simple:
+    desc: Installs Starship, SpaceVIM, Fonts, and GRML ZSH - It could be your daily driver if you wanted it to be
+    deps: [fonts, grml, spacevim, starship]
+    cmds:
+      - echo 'eval "$(starship init zsh)"' | tee -a ~/.zshrc
+      - starship preset nerd-font-symbols -o ~/.config/starship.toml
   fedora:
     desc: Bootstrap Fedora system
-    env:
-      FRESH_LOCAL_SOURCE: hsmalley/dotfiles
+    deps: [terra_repo, rpm_fusion]
     cmds:
       - sudo dnf makecache -y
-      - sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-      - sudo dnf config-manager --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-      - sudo dnf groupupdate core -y
-      - sudo dnf install -y go-task vim zsh restic python-pip python-pip-wheel podman podman-tui
-      - sudo dnf install -y cockpit cockpit-selinux 
+      - sudo dnf install -y go-task vim zsh restic python-pip python-pip-wheel 
+      - sudo dnf install -y cockpit cockpit-selinux podman podman-tui
       - sudo dnf install -y mkfontscale cpan global cargo
       - pip install --user -U pip wheel
-      - FRESH_LOCAL_SOURCE=hsmalley/dotfiles bash <(curl -sL https://get.freshshell.com)
   fedora_update:
     desc: Update System & Reboot
     cmds:
       - sudo dnf offline-distrosync download -y
       - sudo dnf offline-distrosync reboot -y
+  terra_repo:
+    desc: Installs the Terra Repo
+    cmds:
+      - sudo dnf config-manager -y --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+  rpm_fusion:
+    desc: Installs the RPM Fusion Repo
+    cmds:
+      - sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+      - sudo dnf groupupdate core -y
+  fresh:
+    env:
+      FRESH_LOCAL_SOURCE: hsmalley/dotfiles
+    cmds:
+      - FRESH_LOCAL_SOURCE=hsmalley/dotfiles bash <(curl -sL https://get.freshshell.com)
   fonts:
-    desc: Grab my fonts
+    desc: Grab ma fonts
     cmds:
       - mkdir -p ~/.local/share/fonts; git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git ~/.local/share/fonts/nerd-fonts
       - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/JetBrainsMono
@@ -44,14 +59,25 @@ tasks:
       - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/SourceCodePro
       - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/FiraCode
       - fc-cache
+    status:
+      - test -d ~/.local/share/fonts/nerd-fonts
   spacevim:
-    desc: Install SpaceVIM
-    cmds: 
+    desc: Install SpaceVIM - https://spacevim.org/
+    cmds:
       - curl -sLf https://spacevim.org/install.sh | bash
   starship:
-    desc: Install Starship.rs
-    cmds: 
+    desc: Install Starship.rs - https://starship.rs/
+    cmds:
       - curl -sS https://starship.rs/install.sh | sh
+    status:
+      - test -f $(which starship)
+  grml:
+    desc: Installs GRML ZSH - https://grml.org/zsh/
+    cmds:
+      - wget -O ~/.zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
+      - wget -O ~/.zshrc.local  https://git.grml.org/f/grml-etc-core/etc/skel/.zshrc
+    status:
+      - test -f ~/.zshrc
   macos:
     desc: Sets what I like on MacOS (Reboot Required)
     cmds:
