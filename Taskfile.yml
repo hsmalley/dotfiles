@@ -25,8 +25,8 @@ tasks:
     cmds:
       - sudo dnf makecache -y
       - sudo dnf install -y go-task vim zsh restic python-pip python-pip-wheel 
-      - sudo dnf install -y cockpit cockpit-selinux podman podman-tui
-      - sudo dnf install -y mkfontscale cpan global cargo util-linux-user
+      - sudo dnf install -y cockpit cockpit-selinux podman podman-tui sqlite
+      - sudo dnf install -y mkfontscale cpan global cargo util-linux-user pcp-system-tools
       - pip install --user -U pip wheel
   fedora_update:
     desc: Update System & Reboot
