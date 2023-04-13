@@ -1,2 +1,4 @@
+Add this to the bottom of ~/.tmux.conf on Fedora to enable the theme you like
+source-file /usr/share/tmux/powerline.conf
 Add this to the bottom of ~/.tmux.conf on MacOS to enable the theme you like
 source-file "~/Library/Python/3.11/lib/python/site-packages/powerline/bindings/tmux/powerline.conf"
