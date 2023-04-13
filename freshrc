@@ -4,25 +4,6 @@ fresh freshshell/fresh bin/fresh --bin
 fresh freshshell/fresh contrib/completion/fresh-completion.zsh --file=completion/_fresh
 fresh freshshell/fresh-open bin/fresh-open --bin
 
-# Functions
-init_spacevim() {
-	curl -sLf https://spacevim.org/install.sh | bash
-}
-
-init_starship() {
-	curl -sS https://starship.rs/install.sh | sh
-}
-
-init_nerdfonts() {
-	mkdir -p ~/.local
-	git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts ~/.local/nerd-fonts
-	cd ~/.local/nerd-fonts || exit
-	git sparse-checkout add patched-fonts/JetBrainsMono
-	git sparse-checkout add patched-fonts/IBMPlexMono
-	git sparse-checkout add patched-fonts/SourceCodePro
-	git sparse-checkout add patched-fonts/FiraCode
-}
-
 # ZSH
 fresh-options --file=~/.zshrc --ignore-missing
   fresh config/zshrc
@@ -104,6 +85,5 @@ fi
 fresh config/dontpanic --file=~/.dontpanic
 
 #fresh_after_build() {
-#  init_spacevim
-#  init_nerdfonts
+#  go-task -l
 #}

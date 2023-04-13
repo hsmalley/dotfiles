@@ -19,9 +19,6 @@ tasks:
   simple:
     desc: Installs Starship, SpaceVIM, Fonts, and GRML ZSH - It could be your daily driver if you wanted it to be
     deps: [fonts, grml, spacevim, starship]
-    cmds:
-      - echo 'eval "$(starship init zsh)"' | tee -a ~/.zshrc
-      - starship preset nerd-font-symbols -o ~/.config/starship.toml
   fedora:
     desc: Bootstrap Fedora system
     deps: [terra_repo, rpm_fusion]
@@ -29,7 +26,7 @@ tasks:
       - sudo dnf makecache -y
       - sudo dnf install -y go-task vim zsh restic python-pip python-pip-wheel 
       - sudo dnf install -y cockpit cockpit-selinux podman podman-tui
-      - sudo dnf install -y mkfontscale cpan global cargo
+      - sudo dnf install -y mkfontscale cpan global cargo util-linux-user
       - pip install --user -U pip wheel
   fedora_update:
     desc: Update System & Reboot
@@ -51,7 +48,7 @@ tasks:
     cmds:
       - FRESH_LOCAL_SOURCE=hsmalley/dotfiles bash <(curl -sL https://get.freshshell.com)
   fonts:
-    desc: Grab ma fonts
+    desc: Install Nerd Fonts - FiraCode for IDE, IBM Plex for everything else. Backup fonts are JetBrainsMono & Source Code Pro
     cmds:
       - mkdir -p ~/.local/share/fonts; git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git ~/.local/share/fonts/nerd-fonts
       - cd ~/.local/share/fonts/nerd-fonts; git sparse-checkout add patched-fonts/JetBrainsMono
@@ -63,12 +60,16 @@ tasks:
       - test -d ~/.local/share/fonts/nerd-fonts
   spacevim:
     desc: Install SpaceVIM - https://spacevim.org/
+    deps: [fonts]
     cmds:
       - curl -sLf https://spacevim.org/install.sh | bash
   starship:
     desc: Install Starship.rs - https://starship.rs/
+    deps: [fonts]
     cmds:
       - curl -sS https://starship.rs/install.sh | sh
+      - echo 'eval "$(starship init zsh)"' | tee -a ~/.zshrc
+      - starship preset nerd-font-symbols -o ~/.config/starship.toml
     status:
       - test -f $(which starship)
   grml:
@@ -78,6 +79,15 @@ tasks:
       - wget -O ~/.zshrc.local  https://git.grml.org/f/grml-etc-core/etc/skel/.zshrc
     status:
       - test -f ~/.zshrc
+  p10k:
+    desc: Make sure you configure Powerlevel 10k after you run zsh to install everything
+    cmds:
+      - p10k configure
+  macos_fonts:
+    desc: Install Nerd Fonts for MacOS
+    deps: [fonts]
+    cmds:
+      - find ~/.config/fonts -type f -name "*.ttf" -exec cp {} ~/Library/Fonts/ \;
   macos:
     desc: Sets what I like on MacOS (Reboot Required)
     cmds:
