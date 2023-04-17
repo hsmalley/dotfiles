@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Yeah, I'm a horrible zsh monster....
+[[ -f ${XDG_CACHE_HOME:-$HOME}/.zshrc_grml ]] && source ${XDG_CACHE_HOME:-$HOME}/.zshrc_grml
+[[ -f ${XDG_CACHE_HOME:-$HOME}/.zshrc_grml.local ]] && source ${XDG_CACHE_HOME:-$HOME}/.zshrc_grml.local
+
 source ~/.fresh/build/shell.sh
 
 ### Added by Zinit's installer
