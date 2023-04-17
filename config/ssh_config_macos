@@ -10,6 +10,7 @@ host gitlab.com
 
 host *
   AddKeysToAgent yes
+  UseKeychain yes
   Compression yes
   StrictHostKeyChecking no
   ForwardAgent yes
