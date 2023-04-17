@@ -19,6 +19,31 @@ tasks:
   simple:
     desc: Installs Starship, SpaceVIM, Fonts, and GRML ZSH - It could be your daily driver if you wanted it to be
     deps: [fonts, grml, spacevim, starship]
+  rocky8:
+    desc: Bootstrap Rocky 8 (EL) system
+    deps: [el-repos]
+    cmds:
+      - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
+      - sudo dnf config-manager -y --set-enabled powertools extras plus
+      - sudo dnf config-manager -y --set-enabled elrepo-extras elrepo-kernel 
+      - sudo dnf install -y epel-release
+      - sudo dnf makecache -y
+      - sudo dnf install -y restic python-pip python-pip-wheel 
+      - sudo dnf install -y mkfontscale cpan global cargo util-linux-user pcp-system-tools openssl-devel sqlite
+      - sudo dnf install -y vim zsh tmux powerline powerline-docs powerline-fonts tmux-powerline vim-powerline
+      - pip install --user -U pip wheel
+  el-repos:
+    desc: Installs RPM Fusion & EL Repo on Rocky 8 (EL)
+    cmds:
+      - sudo dnf install -y --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
+      - sudo dnf install -y --nogpgcheck https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
+      - sudo dnf install -y --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
+      - sudo dnf install -y --nogpgcheckhttps://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm 
+  rhel_full_update:
+    desc: Update System
+    cmds:
+      - sudo dnf makecache -y
+      - sudo dnf distrosync --best -y
   fedora:
     desc: Bootstrap Fedora system
     deps: [terra_repo, rpm_fusion]
