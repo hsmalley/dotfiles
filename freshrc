@@ -24,6 +24,11 @@ fresh-options --file=~/.zshrc.local --ignore-missing
 fresh config/zshrc_grml --file=~/.zshrc_grml
 fresh config/zshrc_grml_local --file=~/.zshrc_grml.local
 
+fresh-options --file=~/.gitconfig --ignore-missing
+  fresh config/gitconfig.$(hostname -s)
+    fresh config/gitconfig
+fresh-options
+
 # Basics
 fresh config/toprc --file=~/.toprc
 fresh config/bashrc --file=~/.bashrc
