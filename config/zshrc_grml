@@ -3353,7 +3353,7 @@ alias lsw='command ls -ld *(R,W,X.^ND/)'
 #a2# Display the ten biggest files
 alias lsbig="command ls -flh *(.OL[1,10])"
 #a2# Only show directories
-alias lsd='command ls -d *(/)'
+alias lsdd='command ls -d *(/)'
 #a2# Only show empty directories
 alias lse='command ls -d *(/^F)'
 #a2# Display the ten newest files
