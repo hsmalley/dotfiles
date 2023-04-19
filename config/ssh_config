@@ -16,3 +16,5 @@ host *
   ControlMaster auto
   ControlPath ~/.ssh/sockets/%r@%h-%p
   ControlPersist 72000
+  PubkeyAuthentication yes
+  IdentityFile ~/.ssh/id_ed25519

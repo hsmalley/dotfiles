@@ -44,7 +44,10 @@ fresh config/topgrade.toml --file=~/.config/topgrade.toml
 fresh config/ncdu --file=~/.config/ncdu/config
 
 # SSH
-fresh config/ssh_config --file=~/.ssh/config
+fresh-options --file=~/.ssh/config --ignore-missing
+  fresh config/ssh_config
+    fresh config/ssh_config.$(hostname -s)
+fresh-options
 
 # RadSSH
 fresh config/radssh_config --file=~/.radssh_config
