@@ -1,3 +1,8 @@
+[core]
+  autocrlf = input
+  whitespace = trailing-space,tab-in-indent
+[apply]
+  whitespace = error
 [commit]
   gpgsign = true
 [credential]
