@@ -10,8 +10,9 @@
 # https://spacevim.org/mnemonic-key-bindings-navigation/
 
 [options]
-  # automatic_update = true
-  colorscheme = "gruvbox"
+  automatic_update = true
+  # colorscheme = "gruvbox"
+  colorscheme = "dracula"
   colorscheme_bg = "dark"
   enable_guicolors = true
   statusline_separator = "nil"
@@ -23,6 +24,11 @@
   statusline_unicode = true
   enable_filetree_gitstatus = true
   vimcompatible = true
+
+[[custom_plugins]]
+  repo = "dracula/vim"
+  name = "dracula"
+  merged = false
 
 [[layers]]
   name = "default"
