@@ -54,3 +54,4 @@ Vim w/ spacevim
 Not Included:
 
 - Some internal stuff that won't help anyone
+- Private [Dotfiles](git@github.com:hsmalley/dotfiles_private.git)
