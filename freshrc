@@ -59,6 +59,9 @@ fresh config/tmux.conf.local --file=~/.tmux.conf.local
 fresh spacevim/init.toml --file=~/.SpaceVim.d/init.toml
 fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
 
+# Xresources
+fresh config/Xresources --file=~/.Xresources
+
 # Placing empy netrc
 fresh config/netrc --file=~/.netrc
 
