@@ -1,4 +1,5 @@
 [user]
   name = Hugh Smalley
   email = hsmalley@protonmain.com
+  signingkey = 0xBABC5FAE7E3C39AE
   signingkey = /home/hugh/.ssh/id_ed25519.pub
