@@ -184,6 +184,8 @@ random_42 () {
   head -c 42 /dev/urandom | base64
 }
 
+PATH=$PATH:$HOME/.local/bin
+
 source $HOME/.zshrc.local
 source $HOME/.zshrc.alias
 source $HOME/.zshrc.internal
