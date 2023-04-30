@@ -27,7 +27,11 @@ fresh config/zshrc_grml_local --file=~/.zshrc_grml.local
 fresh-options --file=~/.gitconfig --ignore-missing
   fresh config/gitconfig.$(hostname -s)
     fresh config/gitconfig
+      fresh themes/gitconfig
 fresh-options
+
+# Powerline 10k w/ Dracula Theme
+fresh config/p10k.zsh --file=~/.p10k.zsh
 
 # Basics
 fresh config/toprc --file=~/.toprc
@@ -59,9 +63,6 @@ fresh config/tmux.conf.local --file=~/.tmux.conf.local
 fresh spacevim/init.toml --file=~/.SpaceVim.d/init.toml
 fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
 
-# Xresources
-fresh config/Xresources --file=~/.Xresources
-
 # Placing empy netrc
 fresh config/netrc --file=~/.netrc
 
@@ -76,12 +77,16 @@ if [[ "$(uname)" == "Darwin" ]]; then
   fresh bin/umbrellactl --file=~/.local/bin/umbrellactl
 fi
 
-# IT'S FONT TIME BABY!!!
+# IT'S FONT & THEME TIME BABY!!!
 if [[ "$(uname)" == "Linux" ]]; then
 	fresh fonts/MesloLGS\ NF\ Regular.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Regular.ttf
 	fresh fonts/MesloLGS\ NF\ Italic.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Italic.ttf
 	fresh fonts/MesloLGS\ NF\ Bold.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Bold.ttf
 	fresh fonts/MesloLGS\ NF\ Bold\ Italic.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Bold\ Italic.ttf
+  fresh themes/Xresources --file=~/.Xresources
+  fresh themes/Dracula.colorscheme --file=~/.local/share/konsole/Dracula.colorscheme
+  fresh themes/dark_colorls.yaml --file=~/.config/colorls/dark_colors.yaml
+
 fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -91,6 +96,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	fresh fonts/MesloLGS\ NF\ Bold\ Italic.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Bold\ Italic.ttf
 	fresh config/topgrade.toml.$(hostname -s) --file=~/.config/topgrade.conf --ignore-missing
 fi
+
+# Dircolors Theme
+fresh themes/dircolors --file=~/.dircolors
 
 fresh config/dontpanic --file=~/.dontpanic
 

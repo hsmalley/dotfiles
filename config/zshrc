@@ -57,8 +57,10 @@ zinit wait'!' lucid for \
 
 zinit wait lucid for \
   atinit"zicompinit; zicdreplay"  \
-        zdharma-continuum/fast-syntax-highlighting \
-      OMZP::colored-man-pages \
+    dracula/zsh-syntax-highlighting \
+    zsh-users/zsh-syntax-highlighting \
+    zdharma-continuum/fast-syntax-highlighting \
+    OMZP::colored-man-pages \
   as"completion" \
         OMZP::docker/_docker
 
@@ -68,7 +70,7 @@ zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
 zinit light trapd00r/LS_COLORS
 
-# https://github.com/zsh-users/zsh-autosuggestions
+# https://github.com/zsh-users/zsh-autoloadosuggestions
 zinit ice atload \
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 zinit light zsh-users/zsh-autosuggestions
@@ -146,6 +148,9 @@ pip --disable-pip-version-check list --outdated --format=json | python -c "impor
 # ARA
 #export ANSIBLE_CALLBACK_PLUGINS="$(python3 -m ara.setup.callback_plugins)"
 
+# FZF
+export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+
 #GPG Configs
 export KEYID=0xBABC5FAE7E3C39AE
 
@@ -186,7 +191,7 @@ random_42 () {
 
 PATH=$PATH:$HOME/.local/bin
 
-source source $HOME/.zshrc.local
+source $HOME/.zshrc.local
 source $HOME/.zshrc.alias
 source $HOME/.zshrc.internal
 
