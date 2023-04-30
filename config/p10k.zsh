@@ -348,7 +348,6 @@
 
   # Custom prefix.
   # typeset -g POWERLEVEL9K_DIR_PREFIX='in '
-  typeset -g POWERLEVEL9K_DIR_PREFIX='%250Fin '
 
   #####################################[ vcs: git status ]######################################
   # Version control system colors.
