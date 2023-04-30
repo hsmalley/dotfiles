@@ -186,7 +186,7 @@ random_42 () {
 
 PATH=$PATH:$HOME/.local/bin
 
-source $HOME/.zshrc.local
+source source $HOME/.zshrc.local
 source $HOME/.zshrc.alias
 source $HOME/.zshrc.internal
 
