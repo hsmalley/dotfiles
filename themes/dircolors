@@ -78,11 +78,11 @@ EXEC 01;38;2;80;250;123
 # (and any comments you want to add after a '#')
 
 # If you use DOS-style suffixes, you may want to uncomment the following:
-#.cmd 01;38;2;80;250;123 # executables (bright green)
-#.exe 01;38;2;80;250;123
-#.com 01;38;2;80;250;123
-#.btm 01;38;2;80;250;123
-#.bat 01;38;2;80;250;123
+.cmd 01;38;2;80;250;123 # executables (bright green)
+.exe 01;38;2;80;250;123
+.com 01;38;2;80;250;123
+.btm 01;38;2;80;250;123
+.bat 01;38;2;80;250;123
 # Or if you want to color scripts even if they do not have the
 # executable bit actually set.
 #.sh  01;38;2;80;250;123
