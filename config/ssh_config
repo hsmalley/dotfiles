@@ -15,6 +15,6 @@ host *
   ForwardAgent yes
   ControlMaster auto
   ControlPath ~/.ssh/sockets/%r@%h-%p
-  ControlPersist 72000
+  ControlPersist yes
   PubkeyAuthentication yes
   IdentityFile ~/.ssh/id_ed25519
