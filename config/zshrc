@@ -148,6 +148,9 @@ pip --disable-pip-version-check list --outdated --format=json | python -c "impor
 # ARA
 #export ANSIBLE_CALLBACK_PLUGINS="$(python3 -m ara.setup.callback_plugins)"
 
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+
 # FZF
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 

@@ -69,6 +69,7 @@ fresh config/netrc --file=~/.netrc
 # Some Scripts
 fresh bin/tmux-to.sh --file=~/.local/bin/tmux-to
 fresh bin/backup.sh --file=~/.local/bin/backup.sh
+fresh bin/eatmynetwork --file=~/.local/bin/eatmynetwork
 
 if [[ "$(uname)" == "Darwin" ]]; then
   fresh bin/airdrop --file=~/.local/bin/airdrop
@@ -99,7 +100,6 @@ fi
 
 # Dircolors Theme
 fresh themes/dircolors --file=~/.dircolors
-
 fresh config/dontpanic --file=~/.dontpanic
 
 #fresh_after_build() {
