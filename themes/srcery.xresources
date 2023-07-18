@@ -1,5 +1,3 @@
-! srcery colors
-
 ! special
 *foreground:   #fce8c3
 *background:   #1c1b19
@@ -36,6 +34,3 @@
 ! white
 *color7:       #baa67f
 *color15:      #fce8c3
-
-! font
-xterm*faceName: MesloLGS NF

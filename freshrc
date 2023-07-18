@@ -34,7 +34,6 @@ fresh-options
 fresh config/p10k.zsh --file=~/.p10k.zsh
 
 # Basics
-fresh config/toprc --file=~/.toprc
 fresh config/bashrc --file=~/.bashrc
 fresh config/wgetrc --file=~/.wgetrc
 fresh config/inputrc --file=~/.inputrc
@@ -86,6 +85,7 @@ if [[ "$(uname)" == "Linux" ]]; then
 	fresh fonts/MesloLGS\ NF\ Bold\ Italic.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Bold\ Italic.ttf
   fresh themes/Xresources --file=~/.Xresources
   fresh themes/Dracula.colorscheme --file=~/.local/share/konsole/Dracula.colorscheme
+  fresh themes/srcery_konsole.colorscheme --file=~/.local/share/konsole/srcery.colorscheme
   fresh themes/dark_colorls.yaml --file=~/.config/colorls/dark_colors.yaml
 
 fi
@@ -99,6 +99,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 # Dircolors Theme
+fresh config/broot.toml --file=~/.config/broot/config.toml
 fresh themes/dircolors --file=~/.dircolors
 fresh config/dontpanic --file=~/.dontpanic
 

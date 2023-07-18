@@ -12,7 +12,8 @@
 [options]
   automatic_update = true
   # colorscheme = "gruvbox"
-  colorscheme = "dracula"
+  # colorscheme = "dracula"
+  colorscheme = "srcery"
   colorscheme_bg = "dark"
   enable_guicolors = true
   statusline_separator = "nil"
@@ -107,6 +108,9 @@
 
 [[layers]]
   name = "denite"
+
+[[custom_plugins]]
+  repo = "srcery-colors/srcery-vim"
 
 [[custom_plugins]]
   repo = "Shougo/ddu.vim"
