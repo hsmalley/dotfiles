@@ -4,3 +4,5 @@ asset:
   app_id: Laptop
   app_desc: MacOS
 
+urls:
+  - macosx://
