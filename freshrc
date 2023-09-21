@@ -65,8 +65,8 @@ fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
 # Apprise
 fresh-options --file=~/.config/apprise/apprise.yml --ignore-missing
   fresh config/apprise.yml
-    fresh config/apprise_local.yml 
-      fresh config/apprise.$(hostname -s).yml
+    fresh config/apprise.$(hostname -s).yml
+      fresh config/apprise_local.yml 
         fresh hsmalley/dotfiles_private config/apprise.$(hostname -s).yml
 fresh-options
 
