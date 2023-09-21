@@ -63,12 +63,12 @@ fresh spacevim/init.toml --file=~/.SpaceVim.d/init.toml
 fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
 
 # Apprise
-fresh config/apprise_local.yml --file=~/.config/apprise/local.yml
-fresh-options --file=~/.config/apprise.yml --ignore-missing
-  fresh config config/apprise.yml
-    fresh config config/apprise.$(hostname -s).yml
-      fresh hsmalley/dotfiles_private config/$(hostname -s).yml
-fresh-opions
+fresh-options --file=~/.config/apprise/apprise.yml --ignore-missing
+  fresh config/apprise.yml
+    fresh config/apprise_local.yml 
+      fresh config/apprise.$(hostname -s).yml
+        fresh hsmalley/dotfiles_private config/apprise.$(hostname -s).yml
+fresh-options
 
 
 # Placing empy netrc

@@ -10,4 +10,3 @@ urls:
     - tag: linux, desktop
   - macosx://_/?sound=default
     - tag: macos, laptop
-
