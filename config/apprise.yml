@@ -1,0 +1,9 @@
+#
+# Apprise config
+#
+
+version: 1
+
+include:
+  - local.yml
+

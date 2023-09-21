@@ -1,0 +1,13 @@
+#
+# Apprise Local
+#
+
+urls:
+  - json://localhost
+  - xml://localhost
+  - syslog://
+  - dbus://
+    - tag: linux, desktop
+  - macosx://_/?sound=default
+    - tag: macos, laptop
+
