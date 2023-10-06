@@ -6,31 +6,31 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 
 # ZSH
 fresh-options --file=~/.zshrc --ignore-missing
-  fresh config/zshrc
-    fresh config/zshrc.$(hostname -s)
-  fresh-options
+fresh config/zshrc
+fresh config/zshrc.$(hostname -s)
+fresh-options
 
 fresh-options --file=~/.zshrc.alias --ignore-missing
-  fresh config/zshrc.alias
-    fresh config/zshrc.alias.$(hostname -s)
-  fresh-options
+fresh config/zshrc.alias
+fresh config/zshrc.alias.$(hostname -s)
+fresh-options
 
 fresh-options --file=~/.zshrc.local --ignore-missing
-  fresh config/zshrc.local
-    fresh config/zshrc.local.$(hostname -s)
-  fresh-options
+fresh config/zshrc.local
+fresh config/zshrc.local.$(hostname -s)
+fresh-options
 
-# And because I'm a horrible zsh monster... 
+# And because I'm a horrible zsh monster...
 fresh config/zshrc_grml --file=~/.zshrc_grml
 fresh config/zshrc_grml_local --file=~/.zshrc_grml.local
 
 fresh-options --file=~/.gitconfig --ignore-missing
-  fresh config/gitconfig.$(hostname -s)
-    fresh config/gitconfig
-      fresh themes/gitconfig
+fresh config/gitconfig.$(hostname -s)
+fresh config/gitconfig
+fresh themes/gitconfig
 fresh-options
 
-# Powerline 10k w/ Dracula Theme
+# Powerline 10k
 fresh config/p10k.zsh --file=~/.p10k.zsh
 
 # Basics
@@ -40,6 +40,7 @@ fresh config/inputrc --file=~/.inputrc
 fresh config/sqliterc --file=~/.sqliterc
 fresh config/screenrc --file=~/.screenrc
 fresh config/clang-format --file=~/.clang-format
+fresh config/editorconfig --file=~/.editorconfig
 
 # dot configs
 fresh config/ranger/rc.conf --file=~/.config/ranger/rc.conf
@@ -48,8 +49,8 @@ fresh config/ncdu --file=~/.config/ncdu/config
 
 # SSH
 fresh-options --file=~/.ssh/config --ignore-missing
-  fresh config/ssh_config
-    fresh config/ssh_config.$(hostname -s)
+fresh config/ssh_config
+fresh config/ssh_config.$(hostname -s)
 fresh-options
 
 # RadSSH
@@ -64,11 +65,10 @@ fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
 
 # Apprise
 fresh-options --file=~/.config/apprise/apprise.yml --ignore-missing
-  fresh config/apprise.yml
-    fresh config/apprise.$(hostname -s).yml
-      fresh hsmalley/dotfiles_private config/apprise.$(hostname -s).yml
+fresh config/apprise.yml
+fresh config/apprise.$(hostname -s).yml
+fresh hsmalley/dotfiles_private config/apprise.$(hostname -s).yml
 fresh-options
-
 
 # Placing empy netrc
 fresh config/netrc --file=~/.netrc
@@ -79,10 +79,10 @@ fresh bin/backup.sh --file=~/.local/bin/backup.sh
 fresh bin/eatmynetwork --file=~/.local/bin/eatmynetwork
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  fresh bin/airdrop --file=~/.local/bin/airdrop
-  fresh bin/backup_mac.sh --file=~/.local/bin/backup.sh
-  fresh bin/tar_home_mac.sh --file=~/.local/bin/tar_home.sh
-  fresh bin/umbrellactl --file=~/.local/bin/umbrellactl
+	fresh bin/airdrop --file=~/.local/bin/airdrop
+	fresh bin/backup_mac.sh --file=~/.local/bin/backup.sh
+	fresh bin/tar_home_mac.sh --file=~/.local/bin/tar_home.sh
+	fresh bin/umbrellactl --file=~/.local/bin/umbrellactl
 fi
 
 # IT'S FONT & THEME TIME BABY!!!
@@ -91,10 +91,10 @@ if [[ "$(uname)" == "Linux" ]]; then
 	fresh fonts/MesloLGS\ NF\ Italic.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Italic.ttf
 	fresh fonts/MesloLGS\ NF\ Bold.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Bold.ttf
 	fresh fonts/MesloLGS\ NF\ Bold\ Italic.ttf --file=~/.local/share/fonts/MesloLGS\ NF\ Bold\ Italic.ttf
-  fresh themes/Xresources --file=~/.Xresources
-  fresh themes/Dracula.colorscheme --file=~/.local/share/konsole/Dracula.colorscheme
-  fresh themes/srcery_konsole.colorscheme --file=~/.local/share/konsole/srcery.colorscheme
-  fresh themes/dark_colorls.yaml --file=~/.config/colorls/dark_colors.yaml
+	fresh themes/Xresources --file=~/.Xresources
+	fresh themes/Dracula.colorscheme --file=~/.local/share/konsole/Dracula.colorscheme
+	fresh themes/srcery_konsole.colorscheme --file=~/.local/share/konsole/srcery.colorscheme
+	fresh themes/dark_colorls.yaml --file=~/.config/colorls/dark_colors.yaml
 
 fi
 
@@ -111,6 +111,15 @@ fresh config/broot.toml --file=~/.config/broot/config.toml
 fresh themes/dircolors --file=~/.dircolors
 fresh config/dontpanic --file=~/.dontpanic
 
-#fresh_after_build() {
-#  go-task -l
-#}
+fresh_after_build() {
+	chmod +x ~/.local/bin/*
+  cd ~/.dotfiles
+	if [[ "$(uname)" == "Darwin" ]]; then
+		task -l || echo "ERROR taskfile not installed"
+    echo "use task task_name_here to run the next steps"
+	fi
+	if [[ "$(uname)" == "Linux" ]]; then
+		go-task -l || echo "ERROR taskfile not installed"
+    echo "use go-task task_name_here to run the next steps"
+	fi
+}

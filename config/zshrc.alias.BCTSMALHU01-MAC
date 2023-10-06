@@ -4,7 +4,9 @@ alias pip3="pip"
 alias python="/usr/local/bin/python3"
 alias python3="/usr/local/bin/python3"
 
+alias vim="/opt/homebrew/bin/nvim"
 alias radssh="python3 -m radssh.shell"
+alias rad="python3 -m radssh.shell --username $(whoami)"
 alias ls="lsd"
 alias less="bat"
 

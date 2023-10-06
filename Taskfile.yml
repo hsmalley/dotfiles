@@ -120,6 +120,11 @@ tasks:
     desc: Make sure you configure Powerlevel 10k after you run zsh to install everything
     cmds:
       - p10k configure
+  radssh:
+    desc: Installs Radssh (sans LN Plugins)
+    cmds:
+      - pip install -U --user paramiko
+      - pip install -U --user --use-pep517 git+https://github.com/radssh/radssh.git
   macos_fonts:
     desc: Install Nerd Fonts for MacOS
     deps: [fonts]

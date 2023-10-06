@@ -31,6 +31,10 @@
   name = "dracula"
   merged = false
 
+[[custom_plugins]]
+  repo = "editorconfig/editorconfig-vim"
+  merged = false
+
 [[layers]]
   name = "default"
 
@@ -117,10 +121,6 @@
 
 [[custom_plugins]]
   repo = "yaegassy/coc-ansible"
-
-[[custom_plugins]]
-  repo = "BourgeoisBear/clrzr"
-  merged = false
 
 [[custom_plugins]]
   repo = "ryanoasis/vim-devicons"
