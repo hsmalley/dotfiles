@@ -113,6 +113,7 @@ fresh config/dontpanic --file=~/.dontpanic
 
 fresh_after_build() {
 	chmod +x ~/.local/bin/*
+  chmod +w ~/.config/topgrade.toml
   cd ~/.dotfiles
 	if [[ "$(uname)" == "Darwin" ]]; then
 		task -l || echo "ERROR taskfile not installed"

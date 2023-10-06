@@ -1,8 +1,8 @@
 # PYTHON
-alias pip="/usr/local/bin/python3 -m pip"
+alias pip="/opt/homebrew/bin/python3 -m pip"
 alias pip3="pip"
-alias python="/usr/local/bin/python3"
-alias python3="/usr/local/bin/python3"
+alias python="/opt/homebrew/bin/python3"
+alias python3="/opt/homebrew/bin/python3"
 
 alias vim="/opt/homebrew/bin/nvim"
 alias radssh="python3 -m radssh.shell"
