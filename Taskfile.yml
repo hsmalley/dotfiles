@@ -180,3 +180,87 @@ tasks:
       - defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
       - defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
       - defaults write com.apple.ActivityMonitor ShowCategory -int 0
+  flathub:
+    desc: Setup Flathub
+    cmds:
+      - flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  flatpaks:
+    desc: Install come flatpacks, user context
+    deps: [flathub]
+    cmds:
+      - flatpak --user install -y app.getclipboard.Clipboard
+      - flatpak --user install -y com.bitwarden.desktop
+      - flatpak --user install -y com.bitwarden.desktop.Locale
+      - flatpak --user install -y com.dosbox.DOSBox
+      - flatpak --user install -y com.github.k4zmu2a.spacecadetpinball
+      - flatpak --user install -y com.github.marhkb.Pods
+      - flatpak --user install -y com.github.marhkb.Pods.Locale
+      - flatpak --user install -y com.github.Matoking.protontricks
+      - flatpak --user install -y com.github.mtkennerly.ludusavi
+      - flatpak --user install -y com.github.tchx84.Flatseal
+      - flatpak --user install -y com.jetbrains.PyCharm-Professional
+      - flatpak --user install -y com.moonlight_stream.Moonlight
+      - flatpak --user install -y com.obsproject.Studio
+      - flatpak --user install -y com.obsproject.Studio.Locale
+      - flatpak --user install -y com.obsproject.Studio.Plugin.Gstreamer
+      - flatpak --user install -y com.obsproject.Studio.Plugin.InputOverlay
+      - flatpak --user install -y com.obsproject.Studio.Plugin.MoveTransition
+      - flatpak --user install -y com.obsproject.Studio.Plugin.NVFBC
+      - flatpak --user install -y com.obsproject.Studio.Plugin.OBSVkCapture
+      - flatpak --user install -y com.obsproject.Studio.Plugin.ScaleToSound
+      - flatpak --user install -y com.obsproject.Studio.Plugin.SceneSwitcher
+      - flatpak --user install -y com.obsproject.Studio.Plugin.TransitionTable
+      - flatpak --user install -y com.obsproject.Studio.Plugin.WebSocket
+      - flatpak --user install -y com.play0ad.zeroad
+      - flatpak --user install -y com.play0ad.zeroad.Locale
+      - flatpak --user install -y com.redis.RedisInsight
+      - flatpak --user install -y com.steamgriddb.SGDBoop
+      - flatpak --user install -y com.usebottles.bottles
+      - flatpak --user install -y com.usebottles.bottles.Locale
+      - flatpak --user install -y com.valvesoftware.Steam
+      - flatpak --user install -y com.valvesoftware.Steam.CompatibilityTool.Boxtron
+      - flatpak --user install -y com.valvesoftware.Steam.CompatibilityTool.Proton
+      - flatpak --user install -y com.valvesoftware.Steam.CompatibilityTool.Proton-GE
+      - flatpak --user install -y fr.handbrake.ghb
+      - flatpak --user install -y fr.handbrake.ghb.Locale
+      - flatpak --user install -y fr.handbrake.ghb.Plugin.IntelMediaSDK
+      - flatpak --user install -y im.riot.Riot
+      - flatpak --user install -y info.beyondallreason.bar
+      - flatpak --user install -y info.beyondallreason.bar.Locale
+      - flatpak --user install -y io.crow_translate.CrowTranslate
+      - flatpak --user install -y io.dbeaver.DBeaverCommunity
+      - flatpak --user install -y io.github.flattool.Warehouse
+      - flatpak --user install -y io.github.flattool.Warehouse.Locale
+      - flatpak --user install -y io.github.prateekmedia.appimagepool
+      - flatpak --user install -y io.podman_desktop.PodmanDesktop
+      - flatpak --user install -y md.obsidian.Obsidian
+      - flatpak --user install -y md.obsidian.Obsidian.Locale
+      - flatpak --user install -y net.lutris.Lutris
+      - flatpak --user install -y net.lutris.Lutris.Locale
+      - flatpak --user install -y org.freedesktop.fwupd
+      - flatpak --user install -y org.freedesktop.fwupd.Locale
+      - flatpak --user install -y org.freedesktop.Platform.Compat.i386
+      - flatpak --user install -y org.freedesktop.Platform.ffmpeg-full
+      - flatpak --user install -y org.freedesktop.Platform.ffmpeg_full.i386
+      - flatpak --user install -y org.freedesktop.Platform.GL32.default
+      - flatpak --user install -y org.freedesktop.Platform.GL.default
+      - flatpak --user install -y org.freedesktop.Platform.GStreamer.gstreamer-vaapi
+      - flatpak --user install -y org.freedesktop.Platform.Locale
+      - flatpak --user install -y org.freedesktop.Platform.openh264
+      - flatpak --user install -y org.freedesktop.Platform.VulkanLayer.gamescope
+      - flatpak --user install -y org.freedesktop.Platform.VulkanLayer.MangoHud
+      - flatpak --user install -y org.freedesktop.Platform.VulkanLayer.OBSVkCapture
+      - flatpak --user install -y org.freedesktop.Platform.VulkanLayer.vkBasalt
+      - flatpak --user install -y org.kiwix.desktop
+      - flatpak --user install -y org.kiwix.desktop.Locale
+      - flatpak --user install -y org.onlyoffice.desktopeditors
+      - flatpak --user install -y org.pipewire.Helvum
+      - flatpak --user install -y org.prismlauncher.PrismLauncher
+      - flatpak --user install -y org.telegram.desktop
+      - flatpak --user install -y org.telegram.desktop.Locale
+      - flatpak --user install -y org.telegram.desktop.webview
+      - flatpak --user install -y org.telegram.desktop.webview.Locale
+      - flatpak --user install -y org.winehq.Wine.DLLs.dxvk
+      - flatpak --user install -y org.winehq.Wine.gecko
+      - flatpak --user install -y org.winehq.Wine.mono
+      - flatpak --user install -y org.yuzu_emu.yuzu
