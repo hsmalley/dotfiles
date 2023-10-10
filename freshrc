@@ -62,6 +62,10 @@ fresh config/tmux.conf.local --file=~/.tmux.conf.local
 # SpaceVIM
 fresh spacevim/init.toml --file=~/.SpaceVim.d/init.toml
 fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
+fresh spacevim/myspacevim.vim --file=~/.SpaceVim.d/autoload/myspacevim.vim
+
+# LazyVIM
+fresh config/lazy.lua --file=~/.config/nvim/lua/config/lazy.lua
 
 # Apprise
 fresh-options --file=~/.config/apprise/apprise.yml --ignore-missing
@@ -113,14 +117,16 @@ fresh config/dontpanic --file=~/.dontpanic
 
 fresh_after_build() {
 	chmod +x ~/.local/bin/*
-  chmod +w ~/.config/topgrade.toml
-  cd ~/.dotfiles
+	chmod +w ~/.config/topgrade.toml
+	cd ~/.dotfiles
 	if [[ "$(uname)" == "Darwin" ]]; then
-		task -l || echo "ERROR taskfile not installed"
-    echo "use task task_name_here to run the next steps"
+		#task -l || echo "ERROR taskfile not installed"
+		#echo "use task task_name_here to run the next steps"
+		echo "macOS Dotfiles deployed"
 	fi
 	if [[ "$(uname)" == "Linux" ]]; then
-		go-task -l || echo "ERROR taskfile not installed"
-    echo "use go-task task_name_here to run the next steps"
+		#go-task -l || echo "ERROR taskfile not installed"
+		#echo "use go-task task_name_here to run the next steps"
+		echo "Linux Dotfiles deployed"
 	fi
 }

@@ -25,15 +25,8 @@
   statusline_unicode = true
   enable_filetree_gitstatus = true
   vimcompatible = true
-
-[[custom_plugins]]
-  repo = "dracula/vim"
-  name = "dracula"
-  merged = false
-
-[[custom_plugins]]
-  repo = "editorconfig/editorconfig-vim"
-  merged = false
+  bootstrap_before = 'myspacevim#before'
+  bootstrap_after = 'myspacevim#after'
 
 [[layers]]
   name = "default"
@@ -113,15 +106,32 @@
 [[layers]]
   name = "denite"
 
-[[custom_plugins]]
-  repo = "srcery-colors/srcery-vim"
+[[custom-plugins]]
+  repo = "nvim-treesitter/nvim-treesitter"
+  merged = false
 
 [[custom_plugins]]
   repo = "Shougo/ddu.vim"
+  merged = false
 
 [[custom_plugins]]
   repo = "yaegassy/coc-ansible"
+  merged = false
 
 [[custom_plugins]]
   repo = "ryanoasis/vim-devicons"
+  merged = false
+
+[[custom_plugins]]
+  repo = "dracula/vim"
+  name = "dracula"
+  merged = false
+
+[[custom_plugins]]
+  repo = "srcery-colors/srcery-vim"
+  name = "srcery"
+  merged = false
+
+[[custom_plugins]]
+  repo = "editorconfig/editorconfig-vim"
   merged = false

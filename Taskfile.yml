@@ -17,11 +17,24 @@ tasks:
     desc: Choose Wisely?
     deps: []
   simple:
-    desc: Installs Starship, SpaceVIM, Fonts, and GRML ZSH - It could be your daily driver if you wanted it to be
-    deps: [fonts, grml, spacevim, starship]
+    desc: Installs Starship, LazyVIM, Fonts, and GRML ZSH - It could be your daily driver if you wanted it to be
+    deps: [fonts, grml, lazyvim, starship]
+  fresh:
+    env:
+      FRESH_LOCAL_SOURCE: hsmalley/dotfiles
+    deps: [vimfresh]
+    cmds:
+      - FRESH_LOCAL_SOURCE=hsmalley/dotfiles bash <(curl -sL https://get.freshshell.com)
+      - fresh update
+    status:
+      - test -d ~/.dotfiles
+  cache_creds:
+    desc: Runs sudo -v
+    cmds:
+      - sudo -v
   rocky8:
     desc: Bootstrap Rocky 8 (EL) system
-    deps: [el-repos]
+    deps: [cache_creds,el-repos]
     cmds:
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
       - sudo dnf config-manager -y --set-enabled powertools extras plus
@@ -34,6 +47,7 @@ tasks:
       - pip install --user -U pip wheel
   el-repos:
     desc: Installs RPM Fusion & EL Repo on Rocky 8 (EL)
+    deps: [cache_creds]
     cmds:
       - sudo dnf install -y --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
       - sudo dnf install -y --nogpgcheck https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
@@ -41,12 +55,13 @@ tasks:
       - sudo dnf install -y --nogpgcheckhttps://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm 
   rhel_full_update:
     desc: Update System
+    deps: [cache_creds]
     cmds:
       - sudo dnf makecache -y
       - sudo dnf distrosync --best -y
   fedora:
     desc: Bootstrap Fedora system
-    deps: [terra_repo, rpm_fusion]
+    deps: [cache_creds,terra_repo, rpm_fusion]
     cmds:
       - sudo dnf makecache -y
       - sudo dnf install -y go-task restic python-pip python-pip-wheel 
@@ -54,25 +69,28 @@ tasks:
       - sudo dnf install -y mkfontscale cpan global cargo util-linux-user pcp-system-tools openssl-devel
       - sudo dnf install -y vim zsh tmux powerline tmux-powerline vim-powerline
       - pip install --user -U pip wheel
+    status:
+      # This is a hack, ugly... but effective
+      - which go-task restic python-pip python-pip-wheel cockpit cockpit-selinux podman podman-tui sqlite mkfontscale cpan global cargo util-linux-user pcp-system-tools openssl-devel vim zsh tmux powerline tmux-powerline vim-powerline | while IFS= read -r line; do test -x "${line}"; done
   fedora_update:
     desc: Update System & Reboot
+    deps: [cache_creds]
     cmds:
       - sudo dnf offline-distrosync download -y
       - sudo dnf offline-distrosync reboot -y
   terra_repo:
     desc: Installs the Terra Repo
+    deps: [cache_creds]
     cmds:
       - sudo dnf config-manager -y --add-repo https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+    status:
+      - test -f /etc/yum.repos.d/terra.repo
   rpm_fusion:
     desc: Installs the RPM Fusion Repo
+    deps: [cache_creds]
     cmds:
       - sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-      - sudo dnf groupupdate core -y
-  fresh:
-    env:
-      FRESH_LOCAL_SOURCE: hsmalley/dotfiles
-    cmds:
-      - FRESH_LOCAL_SOURCE=hsmalley/dotfiles bash <(curl -sL https://get.freshshell.com)
+      - sudo dnf groupupdate core -yuzu_emu
   fonts:
     desc: Install Nerd Fonts - FiraCode for IDE, IBM Plex for everything else. Backup fonts are JetBrainsMono & Source Code Pro
     cmds:
@@ -84,11 +102,6 @@ tasks:
       - fc-cache
     status:
       - test -d ~/.local/share/fonts/nerd-fonts
-  spacevim:
-    desc: Install SpaceVIM - https://spacevim.org/
-    deps: [fonts]
-    cmds:
-      - curl -sLf https://spacevim.org/install.sh | bash
   starship:
     desc: Install Starship.rs - https://starship.rs/
     deps: [fonts]
@@ -98,17 +111,59 @@ tasks:
       - starship preset nerd-font-symbols -o ~/.config/starship.toml
     status:
       - test -f $(which starship)
+  spacevim:
+    desc: Install SpaceVIM - https://spacevim.org/
+    deps: [vimprep]
+    cmds:
+      - curl -sLf https://spacevim.org/install.sh | bash
+    status:
+      - test -d ~/.SpaceVim
+  lazyvim:
+    desc: Install LazyVIM, if you don't want SpaceVIM, run :checkhealth after installing
+    deps: [vimprep]
+    cmds:
+      - git clone https://github.com/LazyVim/starter ~/.config/nvim
+      - rm -rf ~/.config/nvim/.git
+    status:
+      - test -e ~/.config/nvim/lua/config/lazy.lua
+      - test ! -d ~/.config/nvim/.git
+  vimprep:
+    desc: Cleanup/Backup existing vim files to make way new install
+    cmds:
+      - mv ~/.SpaceVim.d{.,bak} 2>/dev/null || echo "Skipping Backup"
+      - mv ~/.config/nvim{,.bak} 2>/dev/null || echo "Skipping Backup"
+      - mv ~/.local/share/nvim{,.bak} 2>/dev/null || echo "Skipping Backup"
+      - mv ~/.local/state/nvim{,.bak} 2>/dev/null || echo "Skipping Backup"
+      - mv ~/.cache/nvim{,.bak} 2>/dev/null || echo "Skipping Backup"
+  vimfresh:
+    desc: Removes files so Fresh can install the needed stuff
+    cmds:
+      - rm -f ~/.config/nvim/lua/config/lazy.lua 2>/dev/null || echo "No lazy.lua found"
+      - rm -fr ~/.SpaceVim.d 2>/dev/null || echo "No SpaceVim.d found"
+    status:
+      - test ! -e ~/.SpaceVim.d
+      - test ! -e ~/.config/nvim/lua/config/lazy.lua
   oh-my-tmux:
     desc: Installs Oh My Tmux
     dir: ~
     cmds:
       - git clone https://github.com/gpakosz/.tmux.git ~/.tmux
       - ln -s ~/.tmux/.tmux.conf ~/.tmux.conf
+    status:
+      - test -L ~/.tmux.conf
+      - test -d ~/.tmux
   rust_tools:
     desc: Install some rust tools
     cmds:
       - cargo install cargo-update cargo-cache
       - cargo install topgrade bat bottom broot tokei difftastic
+    status:
+      - test -x $(which topgrade)
+      - test -x $(which bat)
+      - test -x $(which bottom)
+      - test -x $(which broot)
+      - test -x $(which difftastic)
+      - test -x $(which tokei)
   grml:
     desc: Installs GRML ZSH - https://grml.org/zsh/
     cmds:
