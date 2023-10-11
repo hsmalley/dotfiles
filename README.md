@@ -55,3 +55,21 @@ Not Included:
 
 - Some internal stuff that won't help anyone
 - Private [Dotfiles](git@github.com:hsmalley/dotfiles_private.git)
+
+## Bootstrap the entire process
+
+Using taskfile.dev we can skip most of this and boostrap the system quickly
+Simply install it, go-task, and use the Taskfile.yml
+
+```shell
+curl -sSLo Taskfile.yml https://github.com/hsmalley/dotfiles/raw/main/Taskfile.yml
+go-task simple
+```
+
+If you want to use my dotfiles do `go-task fresh` rather than simple
+
+NOTE: If taskfile.dev eg go-task is not in your repos, then you can use the install script to install it
+
+```shell
+sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
+```
