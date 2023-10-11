@@ -65,8 +65,8 @@ fresh spacevim/tasks.toml --file=~/.SpaceVim.d/tasks.toml
 fresh spacevim/myspacevim.vim --file=~/.SpaceVim.d/autoload/myspacevim.vim
 
 # LazyVIM
-fresh config/lazy.lua --file=~/.config/nvim/lua/config/lazy.lua
-
+fresh lazyvim/lazy.lua --file=~/.config/nvim/lua/config/lazy.lua
+fresh lazyvim/colorscheme.lua --file=~/.config/nvim/lua/plugins/colorscheme.lua
 # Apprise
 fresh-options --file=~/.config/apprise/apprise.yml --ignore-missing
 fresh config/apprise.yml
