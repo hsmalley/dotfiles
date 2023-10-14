@@ -34,14 +34,14 @@ tasks:
       - sudo -v
   rocky8:
     desc: Bootstrap Rocky 8 (EL) system
-    deps: [cache_creds,el-repos]
+    deps: [cache_creds, el-repos]
     cmds:
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
       - sudo dnf config-manager -y --set-enabled powertools extras plus
-      - sudo dnf config-manager -y --set-enabled elrepo-extras elrepo-kernel 
+      - sudo dnf config-manager -y --set-enabled elrepo-extras elrepo-kernel
       - sudo dnf install -y epel-release
       - sudo dnf makecache -y
-      - sudo dnf install -y restic python-pip python-pip-wheel 
+      - sudo dnf install -y restic python-pip python-pip-wheel
       - sudo dnf install -y mkfontscale cpan global cargo util-linux-user pcp-system-tools openssl-devel sqlite
       - sudo dnf install -y vim zsh tmux powerline powerline-docs powerline-fonts tmux-powerline vim-powerline
       - pip install --user -U pip wheel
@@ -52,7 +52,7 @@ tasks:
       - sudo dnf install -y --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
       - sudo dnf install -y --nogpgcheck https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
       - sudo dnf install -y --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
-      - sudo dnf install -y --nogpgcheckhttps://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm 
+      - sudo dnf install -y --nogpgcheckhttps://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
   rhel_full_update:
     desc: Update System
     deps: [cache_creds]
@@ -61,11 +61,11 @@ tasks:
       - sudo dnf distrosync --best -y
   fedora:
     desc: Bootstrap Fedora system
-    deps: [cache_creds,terra_repo, rpm_fusion]
+    deps: [cache_creds, terra_repo, rpm_fusion]
     cmds:
       - sudo dnf makecache -y
-      - sudo dnf install -y go-task restic python-pip python-pip-wheel 
-      - sudo dnf install -y cockpit cockpit-selinux podman podman-tui sqlite 
+      - sudo dnf install -y go-task restic python-pip python-pip-wheel
+      - sudo dnf install -y cockpit cockpit-selinux podman podman-tui sqlite
       - sudo dnf install -y mkfontscale cpan global cargo util-linux-user pcp-system-tools openssl-devel
       - sudo dnf install -y vim zsh tmux powerline tmux-powerline vim-powerline
       - pip install --user -U pip wheel
@@ -156,7 +156,7 @@ tasks:
     desc: Install some rust tools
     cmds:
       - cargo install cargo-update cargo-cache
-      - cargo install topgrade bat bottom broot tokei difftastic
+      - cargo install topgrade bat bottom broot tokei difftastic shellharden
     status:
       - test -x $(which topgrade)
       - test -x $(which bat)
@@ -164,6 +164,7 @@ tasks:
       - test -x $(which broot)
       - test -x $(which difftastic)
       - test -x $(which tokei)
+      - test -x $(which shellharden)
   grml:
     desc: Installs GRML ZSH - https://grml.org/zsh/
     cmds:

@@ -7,17 +7,17 @@ fresh freshshell/fresh-open bin/fresh-open --bin
 # ZSH
 fresh-options --file=~/.zshrc --ignore-missing
 fresh config/zshrc
-fresh config/zshrc.$(hostname -s)
+fresh config/zshrc."$(hostname -s)"
 fresh-options
 
 fresh-options --file=~/.zshrc.alias --ignore-missing
 fresh config/zshrc.alias
-fresh config/zshrc.alias.$(hostname -s)
+fresh config/zshrc.alias."$(hostname -s)"
 fresh-options
 
 fresh-options --file=~/.zshrc.local --ignore-missing
 fresh config/zshrc.local
-fresh config/zshrc.local.$(hostname -s)
+fresh config/zshrc.local."$(hostname -s)"
 fresh-options
 
 # And because I'm a horrible zsh monster...
@@ -25,7 +25,7 @@ fresh config/zshrc_grml --file=~/.zshrc_grml
 fresh config/zshrc_grml_local --file=~/.zshrc_grml.local
 
 fresh-options --file=~/.gitconfig --ignore-missing
-fresh config/gitconfig.$(hostname -s)
+fresh config/gitconfig."$(hostname -s)"
 fresh config/gitconfig
 fresh themes/gitconfig
 fresh-options
@@ -50,7 +50,7 @@ fresh config/ncdu --file=~/.config/ncdu/config
 # SSH
 fresh-options --file=~/.ssh/config --ignore-missing
 fresh config/ssh_config
-fresh config/ssh_config.$(hostname -s)
+fresh config/ssh_config."$(hostname -s)"
 fresh-options
 
 # RadSSH
@@ -72,8 +72,8 @@ fresh lazyvim/treesitter.lua --file=~/.config/nvim/lua/plugins/treesitter.lua
 # Apprise
 fresh-options --file=~/.config/apprise/apprise.yml --ignore-missing
 fresh config/apprise.yml
-fresh config/apprise.$(hostname -s).yml
-fresh hsmalley/dotfiles_private config/apprise.$(hostname -s).yml
+fresh config/apprise."$(hostname -s)".yml
+fresh hsmalley/dotfiles_private config/apprise."$(hostname -s)".yml
 fresh-options
 
 # Placing empy netrc
@@ -109,7 +109,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 	fresh fonts/MesloLGS\ NF\ Italic.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Italic.ttf
 	fresh fonts/MesloLGS\ NF\ Bold.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Bold.ttf
 	fresh fonts/MesloLGS\ NF\ Bold\ Italic.ttf --file=~/Library/Fonts/MesloLGS\ NF\ Bold\ Italic.ttf
-	fresh config/topgrade.toml.$(hostname -s) --file=~/.config/topgrade.conf --ignore-missing
+	fresh config/topgrade.toml."$(hostname -s)" --file=~/.config/topgrade.conf --ignore-missing
 fi
 
 # Dircolors Theme
