@@ -14,7 +14,6 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.ui.mini-animate" },
 		{ import = "lazyvim.plugins.extras.vscode" },
 		{ import = "lazyvim.plugins.extras.coding.yanky" },
-		{ import = "lazyvim.plugins.extras.linting.nvim-lint" },
 		{ import = "lazyvim.plugins.extras.editor.mini-files" },
 		{ import = "lazyvim.plugins.extras.lang.python" },
 		{ import = "lazyvim.plugins.extras.lang.terraform" },
@@ -23,7 +22,6 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.docker" },
 		{ import = "lazyvim.plugins.extras.lang.cmake" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
-		{ import = "lazyvim.plugins.extras.formatting.conform" },
 		{ import = "lazyvim.plugins.extras.formatting.black" },
 		-- import/override with your plugins
 		{ import = "plugins" },
