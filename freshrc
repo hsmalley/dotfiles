@@ -66,6 +66,7 @@ fresh spacevim/myspacevim.vim --file=~/.SpaceVim.d/autoload/myspacevim.vim
 
 # LazyVIM
 fresh lazyvim/lazy.lua --file=~/.config/nvim/lua/config/lazy.lua
+fresh lazyvim/mason.lua --file=~/.config/nvim/lua/plugins/mason.lua
 fresh lazyvim/colorscheme.lua --file=~/.config/nvim/lua/plugins/colorscheme.lua
 fresh lazyvim/treesitter.lua --file=~/.config/nvim/lua/plugins/treesitter.lua
 
@@ -120,7 +121,7 @@ fresh config/dontpanic --file=~/.dontpanic
 fresh_after_build() {
 	chmod +x ~/.local/bin/*
 	chmod +w ~/.config/topgrade.toml
-	cd ~/.dotfiles
+	cd ~/.dotfiles || exit
 	if [[ "$(uname)" == "Darwin" ]]; then
 		#task -l || echo "ERROR taskfile not installed"
 		#echo "use task task_name_here to run the next steps"
