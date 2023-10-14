@@ -10,128 +10,128 @@
 # https://spacevim.org/mnemonic-key-bindings-navigation/
 
 [options]
-  automatic_update = true
-  # colorscheme = "gruvbox"
-  # colorscheme = "dracula"
-  colorscheme = "srcery"
-  colorscheme_bg = "dark"
-  enable_guicolors = true
-  statusline_separator = "nil"
-  statusline_iseparator = "bar"
-  buffer_index_type = 4
-  windows_index_type = 3
-  enable_tabline_filetype_icon = true
-  enable_statusline_mode = true
-  statusline_unicode = true
-  enable_filetree_gitstatus = true
-  vimcompatible = true
-  bootstrap_before = 'myspacevim#before'
-  bootstrap_after = 'myspacevim#after'
+automatic_update = true
+# colorscheme = "gruvbox"
+# colorscheme = "dracula"
+colorscheme = "srcery"
+colorscheme_bg = "dark"
+enable_guicolors = true
+statusline_separator = "nil"
+statusline_iseparator = "bar"
+buffer_index_type = 4
+windows_index_type = 3
+enable_tabline_filetype_icon = true
+enable_statusline_mode = true
+statusline_unicode = true
+enable_filetree_gitstatus = true
+vimcompatible = true
+bootstrap_before = 'myspacevim#before'
+bootstrap_after = 'myspacevim#after'
 
 [[layers]]
-  name = "default"
+name = "default"
 
 [[layers]]
-  name = 'autocomplete'
-  auto_completion_return_key_behavior = "complete"
-  auto_completion_tab_key_behavior = "smart"
+name = 'autocomplete'
+auto_completion_return_key_behavior = "complete"
+auto_completion_tab_key_behavior = "smart"
 
 [[layers]]
-  name = 'shell'
-  default_position = 'top'
-  default_height = 30
+name = 'shell'
+default_position = 'top'
+default_height = 30
 
 [[layers]]
-  name = "incsearch"
+name = "incsearch"
 
 [[layers]]
-  name = "telescope"
+name = "telescope"
 
 [[layers]]
-  name = "tools"
+name = "tools"
 
 [[layers]]
-  name = "git"
+name = "git"
 
 [[layers]]
-  name = "VersionControl"
+name = "VersionControl"
 
 [[layers]]
-  name = "gtags"
+name = "gtags"
 
 [[layers]]
-  name = 'edit'
-  autosave_timeout = 300000
-  autosave_all_buffers = true
+name = 'edit'
+autosave_timeout = 300000
+autosave_all_buffers = true
 
 [[layers]]
-  name = "fzf"
+name = "fzf"
 
 [[layers]]
-  name = "lang#sh"
+name = "lang#sh"
 
 [[layers]]
-  name = "lang#python"
+name = "lang#python"
 
 [[layers]]
-  name = 'lsp'
+name = 'lsp'
 
 [[layers]]
-  name = "lang#toml"
+name = "lang#toml"
 
 [[layers]]
-  name = "lang#batch"
+name = "lang#batch"
 
 [[layers]]
-  name = "lang#powershell"
-  
-[[layers]]
-  name = "lang#dockerfile"
-  
-[[layers]]
-  name = "lang#html"
+name = "lang#powershell"
 
 [[layers]]
-  name = "lang#markdown"
+name = "lang#dockerfile"
 
 [[layers]]
-  name = "ssh"
+name = "lang#html"
 
 [[layers]]
-  name = "sudo"
+name = "lang#markdown"
 
 [[layers]]
-  name = "zettelkasten"
+name = "ssh"
 
 [[layers]]
-  name = "denite"
+name = "sudo"
+
+[[layers]]
+name = "zettelkasten"
+
+[[layers]]
+name = "denite"
 
 [[custom-plugins]]
-  repo = "nvim-treesitter/nvim-treesitter"
-  merged = false
+repo = "nvim-treesitter/nvim-treesitter"
+merged = false
 
 [[custom_plugins]]
-  repo = "Shougo/ddu.vim"
-  merged = false
+repo = "Shougo/ddu.vim"
+merged = false
 
 [[custom_plugins]]
-  repo = "yaegassy/coc-ansible"
-  merged = false
+repo = "yaegassy/coc-ansible"
+merged = false
 
 [[custom_plugins]]
-  repo = "ryanoasis/vim-devicons"
-  merged = false
+repo = "ryanoasis/vim-devicons"
+merged = false
 
 [[custom_plugins]]
-  repo = "dracula/vim"
-  name = "dracula"
-  merged = false
+repo = "dracula/vim"
+name = "dracula"
+merged = false
 
 [[custom_plugins]]
-  repo = "srcery-colors/srcery-vim"
-  name = "srcery"
-  merged = false
+repo = "srcery-colors/srcery-vim"
+name = "srcery"
+merged = false
 
 [[custom_plugins]]
-  repo = "editorconfig/editorconfig-vim"
-  merged = false
+repo = "editorconfig/editorconfig-vim"
+merged = false

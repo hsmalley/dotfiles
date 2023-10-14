@@ -2,4 +2,3 @@ alias shfmt='shfmt -i 0 -s -d'
 alias radssh="python3 -m radssh.shell"
 alias ls="lsd"
 alias less="bat"
-
