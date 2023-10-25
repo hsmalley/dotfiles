@@ -31,6 +31,7 @@ return {
 				"dockerfile",
 				"hcl",
 				"jq",
+				"norg",
 				"passwd",
 				"pem",
 				"puppet",
