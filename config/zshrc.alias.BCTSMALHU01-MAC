@@ -10,4 +10,6 @@ alias rad="python3 -m radssh.shell --username $(whoami)"
 alias ls="lsd"
 alias less="bat"
 
+alias java="/opt/homebrew/Cellar/openjdk/21.0.1/bin/java"
+
 alias kubectl="minikube kubectl --"
