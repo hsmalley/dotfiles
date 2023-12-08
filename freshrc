@@ -86,6 +86,9 @@ fresh bin/tmux-to.sh --file=~/.local/bin/tmux-to
 fresh bin/backup.sh --file=~/.local/bin/backup.sh
 fresh bin/eatmynetwork --file=~/.local/bin/eatmynetwork
 
+# JQ Recipes
+fresh nntrn/jq-recipes recipes.jq --file=~/.jq/recipes.jq
+
 if [[ "$(uname)" == "Darwin" ]]; then
 	fresh bin/airdrop --file=~/.local/bin/airdrop
 	fresh bin/backup_mac.sh --file=~/.local/bin/backup.sh
