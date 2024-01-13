@@ -17,8 +17,8 @@ tasks:
     desc: Choose Wisely?
     deps: []
   simple:
-    desc: Installs Starship, LazyVIM, Fonts, hishtory, and GRML ZSH - It could be your daily driver if you wanted it to be
-    deps: [fonts, grml, lazyvim, starship, hishtory]
+    desc: Installs Starship, LazyVIM, Fonts, hiSHtory, and GRML ZSH - It could be your daily driver if you wanted it to be
+    deps: [fonts, hishtory, grml, lazyvim, starship]
   fresh:
     env:
       FRESH_LOCAL_SOURCE: hsmalley/dotfiles
@@ -177,7 +177,7 @@ tasks:
     cmds:
       - p10k configure
   hishtory:
-    desc: Installs hishtory (offline mode) - http://hishtory.dev - if you want to sync RTFM
+    desc: Installs hiSHtory (offline mode) - http://hishtory.dev - if you want to sync RTFM
     cmds:
       - curl https://hishtory.dev/install.py | python3 -
       - $HOME/.hishtory/hishtory init --offline
