@@ -1,4 +1,8 @@
-export PATH="/usr/local/bin:/usr/local/sbin:$HOME/Library/Python/3.11/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/Library/Python/3.12/bin:$PATH"
+export PATH="/opt/homebrew/opt/socket_vmnet/bin:$PATH"
 export PATH="$PATH:/Users/smalhu01/.local/bin:/Users/smalhu01/.cargo/bin"
 export LANG=en_US.UTF-8
 export ARCHFLAGS="-arch aarm64"
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
