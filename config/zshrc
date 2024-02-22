@@ -194,6 +194,10 @@ random_42 () {
 
 PATH=$PATH:$HOME/.local/bin
 
+# Krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+
 # Hishtory Config:
 export PATH="$PATH:$HOME/.hishtory"
 #source "$HOME/.hishtory/config.zsh"
