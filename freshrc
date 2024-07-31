@@ -69,7 +69,6 @@ fresh lazyvim/lazy.lua --file=~/.config/nvim/lua/config/lazy.lua
 fresh lazyvim/mason.lua --file=~/.config/nvim/lua/plugins/mason.lua
 fresh lazyvim/colorscheme.lua --file=~/.config/nvim/lua/plugins/colorscheme.lua
 fresh lazyvim/treesitter.lua --file=~/.config/nvim/lua/plugins/treesitter.lua
-fresh lazyvim/neorg.lua --file=~/.config/nvim/lua/plugins/neorg.lua
 
 # Apprise
 fresh-options --file=~/.config/apprise/apprise.yml --ignore-missing

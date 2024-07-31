@@ -60,9 +60,7 @@ zinit wait lucid for \
     dracula/zsh-syntax-highlighting \
     zsh-users/zsh-syntax-highlighting \
     zdharma-continuum/fast-syntax-highlighting \
-    OMZP::colored-man-pages \
-  as"completion" \
-        OMZP::docker/_docker
+    OMZP::colored-man-pages
 
 # https://github.com/trapd00r/LS_COLORS
 zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
@@ -133,7 +131,6 @@ zinit wait"2" lucid from"gh-r" as"null" for \
      sbin"exa* -> exa"  ogham/exa \
      sbin"lsd"          lsd-rs/lsd \
      sbin"difft"        Wilfred/difftastic \
-     sbin"tokei"        XAMPPRocky/tokei \
      sbin"btm"       ClementTsang/bottom \
 
 #zinit pack for \
