@@ -18,3 +18,4 @@ host *
   ControlPersist yes
   PubkeyAuthentication yes
   IdentityFile ~/.ssh/id_ed25519
+  ServerAliveInterval 60
